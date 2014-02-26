@@ -21,9 +21,11 @@ namespace MPS
             segments.ValueChanged += (sender, e) => {
                 Console.WriteLine ("Selected " + segments.SelectedSegment);
                 View.Add(new ProductionSegmentsTableView(new RectangleF (0, 44, View.Bounds.Width, View.Bounds.Height)));
+                View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
             };
 
             View.AddSubview (segments);
+            View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
         }
     }
 }

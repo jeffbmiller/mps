@@ -12,7 +12,7 @@ namespace MPS
         public ProductionSegmentsTableView(System.Drawing.RectangleF frame):base(frame, UITableViewStyle.Grouped)
         {
             Source = new MyTableViewSource(new HogType());
-
+            AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
         }
     }
 
@@ -46,6 +46,10 @@ namespace MPS
 		{
 			return hogType.Segments[section].ToString();
 		}
+//        public override float GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+//        {
+//            return 80;
+//        }
     }
 
     public class ProductionSegmentCell: UITableViewCell
@@ -53,6 +57,7 @@ namespace MPS
         UILabel titleLabel;
 		UILabel cartonsLabel;
 		UILabel piecesLabel;
+        UILabel descriptionLabel;
 
         public ProductionSegmentCell(string cellId):base(UITableViewCellStyle.Default, cellId)
         {
@@ -61,23 +66,35 @@ namespace MPS
             {
                 Font = UIFont.FromName("Helvetica-Bold", 15f),
                 TextColor = UIColor.White,
-				BackgroundColor = UIColor.Clear
+				BackgroundColor = UIColor.Clear,
+                AutoresizingMask = UIViewAutoresizing.FlexibleWidth
+
             };
             ContentView.Add(titleLabel);
 			cartonsLabel = new UILabel()
 			{
 				Font = UIFont.FromName("Helvetica-Bold", 12f),
 				TextColor = UIColor.White,
-				BackgroundColor = UIColor.Clear
+				BackgroundColor = UIColor.Clear,
+                AutoresizingMask = UIViewAutoresizing.FlexibleWidth
 			};
 			ContentView.Add(cartonsLabel);
 			piecesLabel = new UILabel()
 			{
 				Font = UIFont.FromName("Helvetica-Bold", 12f),
 				TextColor = UIColor.White,
-				BackgroundColor = UIColor.Clear
+				BackgroundColor = UIColor.Clear,
+                AutoresizingMask = UIViewAutoresizing.FlexibleWidth
 			};
 			ContentView.Add(piecesLabel);
+            descriptionLabel = new UILabel()
+            {
+                Font = UIFont.FromName("Helvetica-Bold", 12f),
+                TextColor = UIColor.White,
+                BackgroundColor = UIColor.Clear,
+                AutoresizingMask = UIViewAutoresizing.FlexibleWidth
+            };
+            ContentView.Add(descriptionLabel);
         }
 
         public void UpdateCell(SegmentQty segQty)
@@ -85,14 +102,20 @@ namespace MPS
             titleLabel.Text = segQty.Product;
 			piecesLabel.Text = string.Format ("Pieces: {0}", segQty.Pieces.ToString ());
 			cartonsLabel.Text = string.Format ("Cartons: {0}", segQty.Cartons.ToString ());
+            descriptionLabel.Text = segQty.ToString();
+            if (segQty.ProductionType == "Accumulating")
+                ContentView.BackgroundColor = UIColor.Clear.FromHexString("#87CEFA");
+            else
+                ContentView.BackgroundColor = UIColor.Clear.FromHexString("#316BBD");
         }
 
         public override void LayoutSubviews()
         {
             base.LayoutSubviews();
             titleLabel.Frame  = new RectangleF(5, 1, ContentView.Bounds.Width, 25);
-			piecesLabel.Frame  = new RectangleF(5, 15, ContentView.Bounds.Width, 25);
-			cartonsLabel.Frame  = new RectangleF(75, 15, ContentView.Bounds.Width, 25);
+//			piecesLabel.Frame  = new RectangleF(5, 15, ContentView.Bounds.Width, 25);
+//			cartonsLabel.Frame  = new RectangleF(75, 15, ContentView.Bounds.Width, 25);
+            descriptionLabel.Frame  = new RectangleF(5, 15, ContentView.Bounds.Width, 25);
         }
     }
 }

@@ -103,11 +103,11 @@
     <Compile Include="MainViewController.cs" />
     <Compile Include="ProductionSegmentsTableView.cs" />
     <Compile Include="HogType.cs" />
+    <Compile Include="UIColorExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="sdsegmentedcontrol">
-      <InstallationInProgress>False</InstallationInProgress>
       <Version>2.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
