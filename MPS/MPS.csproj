@@ -106,6 +106,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="sdsegmentedcontrol">
+      <InstallationInProgress>False</InstallationInProgress>
       <Version>2.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
