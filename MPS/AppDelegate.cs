@@ -29,7 +29,7 @@ namespace MPS
             // If you have defined a root view controller, set it here:
             // window.RootViewController = myViewController;
 
-            window.RootViewController = new MainViewController();
+            window.RootViewController =new UINavigationController(new MainViewController());
             // make the window visible
             window.MakeKeyAndVisible();
 			
